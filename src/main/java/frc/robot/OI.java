@@ -12,6 +12,7 @@
 package frc.robot;
 
 import frc.robot.commands.*;
+import frc.robot.subsystems.Conveyor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.wpilibj.Joystick;  // MEW 1/19/2020 Correct Build Failure
@@ -92,6 +93,7 @@ public Joystick operator;
     private NetworkTableEntry turretInput;
     private NetworkTableEntry hoodInput;
     private NetworkTableEntry flywheelInput;
+    private NetworkTableEntry hangerInput;
     
     // ***** LIMELIGHT CAMERA *****
     private ShuffleboardTab vision;
@@ -188,35 +190,56 @@ driver = new Joystick(0);
     intakeInput = powerCell.addPersistent("Intake Speed", 0)
         .withWidget(BuiltInWidgets.kTextView)
         .withProperties(Map.of ("min", -1, "max", 1))
-        .withPosition(1, 0)
+        .withPosition(0, 0)
         .getEntry();
     conveyorInput = powerCell.addPersistent("Conveyor Speed", 0)
         .withWidget(BuiltInWidgets.kTextView)
         .withProperties(Map.of("min", -1, "max", 1))
-        .withPosition(0, 0)
+        .withPosition(1, 0)
         .getEntry();
     indexerInput = powerCell.addPersistent("Indexer Speed", 0)
         .withWidget(BuiltInWidgets.kTextView)
         .withProperties(Map.of("min", -1, "max", 1))
-        .withPosition(1, 0)
+        .withPosition(2, 0)
         .getEntry();
     turretInput = powerCell.addPersistent("Turret Speed", 0)
         .withWidget(BuiltInWidgets.kTextView)
         .withProperties(Map.of("min", -1, "max", 1))
-        .withPosition(2, 0)
+        .withPosition(3, 0)
         .getEntry();
     hoodInput = powerCell.addPersistent("Hood Speed", 0)
         .withWidget(BuiltInWidgets.kTextView)
         .withProperties(Map.of("min", -1, "max", 1))
-        .withPosition(3, 0)
+        .withPosition(4, 0)
         .getEntry();
     flywheelInput = powerCell.addPersistent("Flywheel Speed", 0)
         .withWidget(BuiltInWidgets.kTextView)
         .withProperties(Map.of("min", -1, "max", 1))
-        .withPosition(4, 0)
+        .withPosition(5, 0)
         .getEntry();
 
     // TODO: Add commands here after adding them in Robot Builder
+
+    powerCell.add(new IntakeMove())
+        .withPosition(0, 1);
+
+    powerCell.add(new ConveyorMove())
+        .withPosition(1, 1);
+
+    powerCell.add(new IndexerMove())
+        .withPosition(2, 1);
+
+    powerCell.add(new TurretMove())
+        .withPosition(3, 1);
+
+    powerCell.add(new HoodMove())
+        .withPosition(4, 1);
+
+    powerCell.add(new FlyWheelMove())
+        .withPosition(5, 1);
+        
+    powerCell.add(new HangerMove())
+        .withPosition(6, 1);
 
     // ***** LIMELIGHT *****
     // Allows the user to view targeting information
@@ -318,6 +341,10 @@ public Joystick getoperator() {
 
     public double getPowerCellFlywheelInput() {
         return flywheelInput.getDouble(0);
+    }
+
+    public double getPowerCellHangerInput() {
+        return hangerInput.getDouble(0);
     }
 
     public void updateVisionTX(double _value) {
