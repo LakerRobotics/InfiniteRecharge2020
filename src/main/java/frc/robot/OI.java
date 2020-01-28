@@ -217,8 +217,12 @@ driver = new Joystick(0);
         .withProperties(Map.of("min", -1, "max", 1))
         .withPosition(5, 0)
         .getEntry();
+    hangerInput = powerCell.addPersistent("Hanger Speed", 0)
+        .withWidget(BuiltInWidgets.kTextView)
+        .withProperties(Map.of("min", -1, "max", 1))
+        .withPosition(6, 0)
+        .getEntry();
 
-    // TODO: Add commands here after adding them in Robot Builder
 
     powerCell.add(new IntakeMove())
         .withPosition(0, 1);
