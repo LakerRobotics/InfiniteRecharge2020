@@ -94,6 +94,9 @@ public Joystick operator;
     private NetworkTableEntry hoodInput;
     private NetworkTableEntry flywheelInput;
     private NetworkTableEntry hangerInput;
+    private NetworkTableEntry bottomSensor;
+    private NetworkTableEntry readyToLoadSensor;
+    private NetworkTableEntry topSensor;
     
     // ***** LIMELIGHT CAMERA *****
     private ShuffleboardTab vision;
@@ -245,6 +248,18 @@ driver = new Joystick(0);
     powerCell.add(new HangerMove())
         .withPosition(6, 1);
 
+    readyToLoadSensor = powerCell.add("ReadyToLoadSensor", 0)
+        .withPosition(8, 0)
+        .getEntry();
+
+    bottomSensor = powerCell.add("BottomSensor", 0)
+        .withPosition(9, 0)
+        .getEntry();
+
+    topSensor = powerCell.add("TopSensor", 0)
+        .withPosition(10, 0)
+        .getEntry();
+
     // ***** LIMELIGHT *****
     // Allows the user to view targeting information
     vision = Shuffleboard.getTab("Vision");
@@ -365,6 +380,18 @@ public Joystick getoperator() {
 
     public void updateVisionTV(Boolean _value) {
         tv.setBoolean(_value);
+    }
+
+    public void updateReadyToLoadSensor(double _value) {
+        readyToLoadSensor.setDouble(_value);
+    }
+
+    public void updateTopSensor(double _value) {
+        topSensor.setDouble(_value);
+    }
+
+    public void updateBottomSensor(double _value) {
+        bottomSensor.setDouble(_value);
     }
 
 }
