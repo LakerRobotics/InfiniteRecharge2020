@@ -43,7 +43,7 @@ public class HoodMove extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.hood.move();
+        Robot.hood.move(Robot.oi.getPowerCellHoodInput());
     }
 
     // Make this return true when this Command no longer needs to run execute()

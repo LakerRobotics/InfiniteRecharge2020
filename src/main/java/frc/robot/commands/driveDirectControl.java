@@ -43,7 +43,7 @@ public class driveDirectControl extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.driveTrain.directControl();
+        Robot.driveTrain.directControl(Robot.oi.getDriveLeftInput(), Robot.oi.getDriveRightInput());
     }
 
     // Make this return true when this Command no longer needs to run execute()

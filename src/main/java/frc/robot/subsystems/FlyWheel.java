@@ -84,8 +84,8 @@ flyWheelTalon = new WPI_TalonSRX(19);
         flyWheelTalon.stopMotor();
     }
 
-    public void move() {
-        flyWheelTalon.set(ControlMode.PercentOutput, Robot.oi.getPowerCellFlywheelInput());
+    public void move(double speed) {
+        flyWheelTalon.set(ControlMode.PercentOutput, speed);
     }
 
     // here. Call these from Commands.

@@ -77,8 +77,8 @@ indexerVictor = new WPI_VictorSPX(11);
         indexerVictor.stopMotor();
     }
 
-    public void move() {
-        indexerVictor.set(ControlMode.PercentOutput, Robot.oi.getPowerCellIndexerInput());
+    public void move(double speed) {
+        indexerVictor.set(ControlMode.PercentOutput, speed);
     }
 
     // here. Call these from Commands.

@@ -188,17 +188,17 @@ rightSPX2 = new WPI_VictorSPX(16);
         diffDrive.tankDrive(leftSpeed, rightSpeed);
     }
 
-    public void directControl() {
-        leftSRX.set(ControlMode.PercentOutput, Robot.oi.getDriveLeftInput());
-        rightSRX.set(ControlMode.PercentOutput, Robot.oi.getDriveRightInput());
+    public void directControl(double leftSpeed, double rightSpeed) {
+        leftSRX.set(ControlMode.PercentOutput, leftSpeed);
+        rightSRX.set(ControlMode.PercentOutput, rightSpeed);
     }
 
-    public void dualDirectControl() {
+    public void dualDirectControl(double speed) {
         leftSRX.setSelectedSensorPosition(0, 0, 0);
         rightSRX.setSelectedSensorPosition(0, 0, 0);
 
-        leftSRX.set(ControlMode.PercentOutput, Robot.oi.getDriveDualInput());
-        rightSRX.set(ControlMode.PercentOutput, -Robot.oi.getDriveDualInput());
+        leftSRX.set(ControlMode.PercentOutput, speed);
+        rightSRX.set(ControlMode.PercentOutput, -speed);
     }
 
     private void configurePID(WPI_TalonSRX _talon) {

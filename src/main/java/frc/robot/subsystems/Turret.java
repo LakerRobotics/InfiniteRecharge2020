@@ -77,8 +77,8 @@ turretTalon = new WPI_TalonSRX(20);
         turretTalon.stopMotor();
     }
 
-    public void move() {
-        turretTalon.set(Robot.oi.getPowerCellTurretInput());
+    public void move(double speed) {
+        turretTalon.set(speed);
     }
 
     // here. Call these from Commands.

@@ -77,8 +77,8 @@ intakeVictor = new WPI_VictorSPX(18);
         intakeVictor.stopMotor();
     }
 
-    public void move() {
-        intakeVictor.set(ControlMode.PercentOutput, Robot.oi.getPowerCellIntakeInput());
+    public void move(double speed) {
+        intakeVictor.set(ControlMode.PercentOutput, speed);
     }
 
     // here. Call these from Commands.

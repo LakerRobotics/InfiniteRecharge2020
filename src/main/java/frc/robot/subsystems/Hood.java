@@ -83,8 +83,8 @@ hoodSpark.setIdleMode(IdleMode.kCoast);
         hoodSpark.stopMotor();
     }
 
-    public void move() {
-        hoodSpark.set(Robot.oi.getPowerCellHoodInput());
+    public void move(double speed) {
+        hoodSpark.set(speed);
     }
 
     // here. Call these from Commands.
