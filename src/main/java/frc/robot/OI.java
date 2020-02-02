@@ -233,6 +233,9 @@ driver = new Joystick(0);
     powerCell.add(new ConveyorMove())
         .withPosition(1, 1);
 
+    powerCell.add(new conveyorMoveIntakeToBottom())
+        .withPosition(1, 2);
+
     powerCell.add(new IndexerMove())
         .withPosition(2, 1);
 
