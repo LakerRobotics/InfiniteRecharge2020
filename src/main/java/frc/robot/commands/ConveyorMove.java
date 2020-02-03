@@ -44,7 +44,7 @@ public class ConveyorMove extends Command {
     @Override
     protected void execute() {
         
-        Robot.conveyor.move(Robot.oi.getPowerCellConveyorInput());
+        Robot.conveyor.move(Robot.oi.getConveyorInput());
     }
 
     // Make this return true when this Command no longer needs to run execute()

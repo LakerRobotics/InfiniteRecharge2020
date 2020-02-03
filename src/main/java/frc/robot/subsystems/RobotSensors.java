@@ -56,12 +56,12 @@ private Ultrasonic topUltrasonic;
     public static int BOTTOM_STATE;
     public static int INTAKE_STATE;
     public static int TOP_STATE;
-    private final double INRANGE_MIN_RTL_DISTANCE = 2.3;
+    // private final double INRANGE_MIN_RTL_DISTANCE = 2.3;
     private final double INRANGE_MAX_RTL_DISTANCE = 2.7;
     private final double EMPTY_BOTTOM_DISTANCE = 5.0;
-    private final double INRANGE_MIN_BOTTOM_DISTANCE = 2.3;
+    // private final double INRANGE_MIN_BOTTOM_DISTANCE = 2.3;
     private final double INRANGE_MAX_BOTTOM_DISTANCE = 2.7;
-    private final double INRANGE_MIN_TOP_DISTANCE = 2.3;
+    // private final double INRANGE_MIN_TOP_DISTANCE = 2.3;
     private final double INRANGE_MAX_TOP_DISTANCE = 2.7;
     public static final int kInRange = 0;
     public static final int kIncreasing = 1;
@@ -136,6 +136,8 @@ addChild("TopUltrasonic",topUltrasonic);
         Robot.oi.updateBottomSensor(bottomUltrasonic.getRangeInches());
         Robot.oi.updateTopSensor(topUltrasonic.getRangeInches());
 
+        Robot.oi.updateGyroAngle(frcGyroAccel.getAngle());
+
         setIntakeState();
         setBottomState();
         setTopState();
@@ -151,8 +153,11 @@ addChild("TopUltrasonic",topUltrasonic);
     private void setIntakeState() {
         double currentIntakeSensorValue = readyToLoadUltrasonic.getRangeInches();
 
+        /* ***** IT IS OK FOR THE POWER CELL TO BE "TOO" CLOSE TO THE SENSOR *****
         if ((currentIntakeSensorValue <= INRANGE_MAX_RTL_DISTANCE) &&
             (currentIntakeSensorValue >= INRANGE_MIN_RTL_DISTANCE))
+        */
+        if (currentIntakeSensorValue <= INRANGE_MAX_RTL_DISTANCE)
             INTAKE_STATE = kInRange;
         else
             INTAKE_STATE = kEmpty;
@@ -170,8 +175,10 @@ addChild("TopUltrasonic",topUltrasonic);
             else
                 BOTTOM_STATE = kIncreasing;
         }
+        else BOTTOM_STATE = kInRange;
+        /* ***** IT IS OK FOR THE POWER CELL TO BE "TOO" CLOSE TO THE SENSOR *****
         else if (currentBottomSensorValue >= INRANGE_MIN_BOTTOM_DISTANCE) {
-            BOTTOM_STATE = kInRange;
+           BOTTOM_STATE = kInRange;
         }
         else {
             if (previousBottomSensorValue > currentBottomSensorValue)
@@ -179,6 +186,7 @@ addChild("TopUltrasonic",topUltrasonic);
             else
                 BOTTOM_STATE = kIncreasing;
         }
+        */
         previousBottomSensorValue = currentBottomSensorValue;
 
     }
@@ -186,8 +194,11 @@ addChild("TopUltrasonic",topUltrasonic);
     private void setTopState() {
         double currentTopSensorValue = topUltrasonic.getRangeInches();
 
+        /* ***** IT IS OK FOR THE POWER CELL TO BE "TOO" CLOSE TO THE SENSOR *****
         if ((currentTopSensorValue <= INRANGE_MAX_TOP_DISTANCE) &&
             (currentTopSensorValue >= INRANGE_MIN_TOP_DISTANCE))
+        */
+        if (currentTopSensorValue <= INRANGE_MAX_TOP_DISTANCE)
             TOP_STATE = kInRange;
         else
             TOP_STATE = kEmpty;

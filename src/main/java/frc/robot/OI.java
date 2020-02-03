@@ -84,6 +84,7 @@ public Joystick operator;
     private NetworkTableEntry leftVelocity;
     private NetworkTableEntry dualEncoderDifference;
     private NetworkTableEntry dualVelocityDifference;
+    private NetworkTableEntry gyroAngle;
 
     // ***** POWER-CELL *****
     private ShuffleboardTab powerCell;
@@ -93,10 +94,13 @@ public Joystick operator;
     private NetworkTableEntry turretInput;
     private NetworkTableEntry hoodInput;
     private NetworkTableEntry flywheelInput;
-    private NetworkTableEntry hangerInput;
     private NetworkTableEntry bottomSensor;
     private NetworkTableEntry readyToLoadSensor;
     private NetworkTableEntry topSensor;
+
+    // ***** HANGER *****
+    private ShuffleboardTab hangerTab;
+    private NetworkTableEntry hangerInput;
     
     // ***** LIMELIGHT CAMERA *****
     private ShuffleboardTab vision;
@@ -170,6 +174,11 @@ driver = new Joystick(0);
         .withPosition(4, 2)
         .getEntry();
 
+    gyroAngle = controlMotors.add("Gyro Angle", 0)
+        .withWidget(BuiltInWidgets.kGyro)
+        .withPosition(4, 0)
+        .getEntry();
+
     controlMotors.add(new driveArcadePercentOutput())
         .withPosition(7, 0);
     controlMotors.add(new driveTankPercentOutput())
@@ -220,11 +229,6 @@ driver = new Joystick(0);
         .withProperties(Map.of("min", -1, "max", 1))
         .withPosition(5, 0)
         .getEntry();
-    hangerInput = powerCell.addPersistent("Hanger Speed", 0)
-        .withWidget(BuiltInWidgets.kTextView)
-        .withProperties(Map.of("min", -1, "max", 1))
-        .withPosition(6, 0)
-        .getEntry();
 
 
     powerCell.add(new IntakeMove())
@@ -248,9 +252,6 @@ driver = new Joystick(0);
     powerCell.add(new FlyWheelMove())
         .withPosition(5, 1);
         
-    powerCell.add(new HangerMove())
-        .withPosition(6, 1);
-
     readyToLoadSensor = powerCell.add("ReadyToLoadSensor", 0)
         .withPosition(8, 0)
         .getEntry();
@@ -262,6 +263,18 @@ driver = new Joystick(0);
     topSensor = powerCell.add("TopSensor", 0)
         .withPosition(10, 0)
         .getEntry();
+
+    // ***** HANGER *****
+    hangerTab = Shuffleboard.getTab("Hang");
+
+    hangerInput = hangerTab.addPersistent("Hanger Speed", 0)
+        .withWidget(BuiltInWidgets.kTextView)
+        .withProperties(Map.of("min", -1, "max", 1))
+        .withPosition(6, 0)
+        .getEntry();
+
+    hangerTab.add(new HangerMove())
+        .withPosition(6, 1);
 
     // ***** LIMELIGHT *****
     // Allows the user to view targeting information
@@ -341,31 +354,31 @@ public Joystick getoperator() {
         return dualInput.getDouble(0);
     }
 
-    public double getPowerCellIntakeInput() {
+    public double getIntakeInput() {
         return intakeInput.getDouble(0);
     }
 
-    public double getPowerCellConveyorInput() {
+    public double getConveyorInput() {
         return conveyorInput.getDouble(0);
     }
 
-    public double getPowerCellIndexerInput() {
+    public double getIndexerInput() {
         return indexerInput.getDouble(0);
     }
 
-    public double getPowerCellTurretInput() {
+    public double getTurretInput() {
         return turretInput.getDouble(0);
     }
 
-    public double getPowerCellHoodInput() {
+    public double getHoodInput() {
         return hoodInput.getDouble(0);
     }
 
-    public double getPowerCellFlywheelInput() {
+    public double getFlywheelInput() {
         return flywheelInput.getDouble(0);
     }
 
-    public double getPowerCellHangerInput() {
+    public double getHangerInput() {
         return hangerInput.getDouble(0);
     }
 
@@ -396,6 +409,9 @@ public Joystick getoperator() {
     public void updateBottomSensor(double _value) {
         bottomSensor.setDouble(_value);
     }
-
+    
+    public void updateGyroAngle(double _value) {
+        gyroAngle.setDouble(_value);
+    }
 }
   

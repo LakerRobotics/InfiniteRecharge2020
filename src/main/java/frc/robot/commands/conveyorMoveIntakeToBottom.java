@@ -47,7 +47,7 @@ public class conveyorMoveIntakeToBottom extends Command {
     protected void execute() {
         if (RobotSensors.INTAKE_STATE == RobotSensors.kInRange &&                       // There must be a power cell in the intake ready to load into magazine
             RobotSensors.TOP_STATE == RobotSensors.kEmpty)                              // There cannot be a power cell in the top of the magazine (JAM might occur)
-            Robot.conveyor.move(Robot.oi.getPowerCellConveyorInput());
+            Robot.conveyor.move(Robot.oi.getConveyorInput());
     }
 
     // Make this return true when this Command no longer needs to run execute()
