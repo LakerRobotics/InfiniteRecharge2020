@@ -13,6 +13,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.subsystems.*;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 /**
  *
@@ -49,11 +51,11 @@ public class shootAll extends CommandGroup {
 
     // Aims the hood at a certain angle based on the distance to the target
 
-    addSequential(new AimHood());
+    addParallel(new AimHood());
 
     // Aligns the turret to line up with the target which allows for easier shots
 
-    addSequential(new AlignWithTurret());
+    addParallel(new AlignWithTurret());
 
     } 
 }
