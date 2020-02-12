@@ -13,14 +13,15 @@ package frc.robot;
 import frc.robot.commands.*;
 import frc.robot.subsystems.Conveyor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj.Joystick; // MEW 1/19/2020 Correct Build Failure
 // ***** 5053 *****
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import java.util.Map;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.*;
+
 
 
 /**
@@ -114,7 +115,7 @@ public Joystick operator;
 operator = new Joystick(1);
 
 intake_ButtonB = new JoystickButton(operator, 2);
-//intake_ButtonB.whileHeld(new IntakeMove(false));
+intake_ButtonB.whileHeld(new IntakeMove(false));
 driver = new Joystick(0);
 
 
