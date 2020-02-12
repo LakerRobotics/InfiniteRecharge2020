@@ -51,7 +51,7 @@ public class IntakeMove extends Command {
             Robot.intake.move(Robot.oi.getIntakeInput());
         else
         {
-            if (RobotSensors.INTAKE_STATE == RobotSensors.kEmpty) {
+            if (!Robot.robotSensors.isIntakeInRange()) {
                 Robot.intake.move(Robot.oi.getIntakeInput());
             }
         }
@@ -62,7 +62,7 @@ public class IntakeMove extends Command {
     protected boolean isFinished() {
         if (m_overRideState) return false;
         else {
-            if (RobotSensors.INTAKE_STATE == RobotSensors.kInRange) return true;
+            if (Robot.robotSensors.isIntakeInRange()) return true;
             else return false;
         }
     }
