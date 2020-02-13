@@ -59,7 +59,7 @@ private Ultrasonic topUltrasonic;
     public static int INTAKE_STATE;
     public static int TOP_STATE;
     private final double INRANGE_MAX_RTL_DISTANCE = 2.7;
-    private final double INRANGE_MAX_BOTTOM_DISTANCE = 1.8;
+    private final double INRANGE_MAX_BOTTOM_DISTANCE = 5.0;
     private final double INRANGE_MAX_TOP_DISTANCE = 2.5;
     public static final int kInRange = 0;
     public static final int kIncreasing = 1;

@@ -95,7 +95,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: &id006 [CANID]
-            value: '2'
+            value: '1'
         Base: Talon SRX
         Name: leftSRX
       - Children: []
@@ -105,7 +105,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: *id006
-            value: '1'
+            value: '2'
         Base: Talon SRX
         Name: rightSRX
       Properties:
@@ -138,7 +138,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: &id008 [CANID]
-          value: '13'
+          value: '10'
       Base: Victor SPX
       Name: leftSPX1
     - Children: []
@@ -148,7 +148,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id008
-          value: '14'
+          value: '16'
       Base: Victor SPX
       Name: leftSPX2
     - Children: []
@@ -158,7 +158,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id008
-          value: '10'
+          value: '13'
       Base: Victor SPX
       Name: rightSPX1
     - Children: []
@@ -168,7 +168,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id008
-          value: '16'
+          value: '14'
       Base: Victor SPX
       Name: rightSPX2
     Properties:
@@ -520,7 +520,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '1'
+          value: '6'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -549,7 +549,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '1'
+          value: '6'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -564,6 +564,35 @@ Children:
           value: whenReleased
       Base: Joystick Button
       Name: stopShootButton
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: operator}
+        Parameters: !!robotbuilder.data.properties.ParametersProperty
+          default: []
+          name: Parameters
+          validators: null
+          value: []
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id014
+          default: '1'
+          name: Button
+          validators: null
+          value: '1'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id015
+          value: HangerMove
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id016
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: hangerButton
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id017
@@ -891,25 +920,24 @@ Children:
         name: Autonomous Selection, validators: null, value: false}
       Parameters: !!robotbuilder.data.properties.ParametersProperty
         default:
-        - &id019 !!robotbuilder.data.properties.ParameterDescriptor {name: timeout,
-          type: double}
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: timeout, type: double}
         name: Parameters
         validators: null
         value:
-        - *id019
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: timeout, type: double}
       Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Run When Disabled, validators: null, value: false}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: FlyWheel}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id020
+        default: []
+        name: Parameter presets
+        validators: null
+        value:
         - !!robotbuilder.data.properties.ParameterSet
           name: default
           parameters:
           - {name: timeout, type: double, value: '3'}
-        name: Parameter presets
-        validators: null
-        value: *id020
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Timed Command
@@ -1111,7 +1139,7 @@ Children:
       Commands: !!robotbuilder.data.properties.ListProperty
         default: []
         name: Commands
-        validators: &id021 [List]
+        validators: &id019 [List]
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
@@ -1136,12 +1164,37 @@ Children:
       Commands: !!robotbuilder.data.properties.ListProperty
         default: []
         name: Commands
-        validators: *id021
+        validators: *id019
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command Group
     Name: shootStop
+  - Children: []
+    Properties:
+      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Autonomous Selection, validators: null, value: false}
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
+        name: Run When Disabled, validators: null, value: false}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id020 []
+        name: Parameter presets
+        validators: null
+        value: *id020
+      Commands: !!robotbuilder.data.properties.ListProperty
+        default: &id021 []
+        name: Commands
+        validators: *id019
+        value: *id021
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command Group
+    Name: conveyorIndexer
   Properties: {}
   Base: Commands
   Name: Commands
@@ -1163,9 +1216,9 @@ Properties:
     name: Export Subsystems, validators: null, value: true}
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Mary\',
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Laker-Programming\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: ..\..\}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Mary\FRCProjects',
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Laker-Programming\FRCProjects',
     extension: null, folder: true, name: Export Directory, validators: null, value: ..\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
