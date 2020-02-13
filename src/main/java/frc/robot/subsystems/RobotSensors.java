@@ -91,6 +91,7 @@ addChild("TopUltrasonic",topUltrasonic);
     // ***** 5053 *****
     frcGyroAccel = new ADXRS450_Gyro();
     addChild("frcGyroAccel",frcGyroAccel);
+    frcGyroAccel.calibrate();                       // https://wiki.analog.com/first/adxrs450_gyro_board_frc/java
 
     table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx");

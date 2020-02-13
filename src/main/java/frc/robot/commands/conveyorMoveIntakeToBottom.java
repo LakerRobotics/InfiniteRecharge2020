@@ -70,6 +70,10 @@ public class conveyorMoveIntakeToBottom extends Command {
             SmartDashboard.putString("Debug Message", "Bottom In Range True");
             return true;
         }
+        else if (Robot.robotSensors.isTopInRange()) {                                   // MEW 20200213 -- Add code to prevent jamming at the indexer!
+            SmartDashboard.putString("Debug Message", "Top In Range True");
+            return true;
+        }
         else {
             SmartDashboard.putString("Debug Message", "Bottom In Range False");
             return false;
