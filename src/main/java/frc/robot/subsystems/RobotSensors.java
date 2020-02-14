@@ -51,10 +51,13 @@ private Ultrasonic topUltrasonic;
     private ADXRS450_Gyro frcGyroAccel;
 
     private NetworkTable table;
-    private NetworkTableEntry tx;
-    private NetworkTableEntry ty;
-    private NetworkTableEntry ta;
-    private NetworkTableEntry tv;
+    private NetworkTableEntry tx;       // Horizontal Offset from Crosshair to Target -27 degrees to 27 degrees
+    private NetworkTableEntry ty;       // Vertical Offset from Crosshair to Target -20.5 degrees to 20.5 degrees
+    private NetworkTableEntry ta;       // Target Area 0% of image to 100% of image
+    private NetworkTableEntry ts;       // Rotation or Skew of Target
+    private NetworkTableEntry tv;       // Whether the limelight has any valid targets 0 or 1
+    public static final double VISION_DEFAULT = 999999;
+
     public static int BOTTOM_STATE;
     public static int INTAKE_STATE;
     public static int TOP_STATE;
@@ -99,6 +102,7 @@ addChild("TopUltrasonic",topUltrasonic);
     ty = table.getEntry("ty");
     ta = table.getEntry("ta");
     tv = table.getEntry("tv");
+    ts = table.getEntry("ts");
 
     readyToLoadUltrasonic.setEnabled(true);
     readyToLoadUltrasonic.setAutomaticMode(true);
@@ -129,6 +133,7 @@ addChild("TopUltrasonic",topUltrasonic);
         Robot.oi.updateVisionTA(ta.getDouble(0));
         Robot.oi.updateVisionTX(tx.getDouble(0));
         Robot.oi.updateVisionTY(ty.getDouble(0));
+        Robot.oi.updateVisionTS(ts.getDouble(0));
         Robot.oi.updateVisionTV(tv.getBoolean(false));
 
         Robot.oi.updateReadyToLoadSensor(readyToLoadUltrasonic.getRangeInches());
@@ -211,15 +216,42 @@ addChild("TopUltrasonic",topUltrasonic);
     }
 
     public double getTX() {
-        
-        table = NetworkTableInstance.getDefault().getTable("limelight");
-        tx = table.getEntry("tx");
-        ty = table.getEntry("ty");
-        ta = table.getEntry("ta");
-        tv = table.getEntry("tv");
+        return tx.getDouble(VISION_DEFAULT);
+    }
 
-        if (tv.getBoolean(false)) return (double) tx.getNumber(999999);
-        else return 999999;
+    public double getTY() {
+        return ty.getDouble(VISION_DEFAULT);
+    }
+
+    public boolean getTV() {
+        if (tv.getBoolean(false)) {
+            // Target is acquired
+            if (tx.getDouble(VISION_DEFAULT) == 0 &&
+                ty.getDouble(VISION_DEFAULT) == 0 &&
+                ts.getDouble(VISION_DEFAULT) == 0 &&
+                ta.getDouble(VISION_DEFAULT) == 0) {
+                SmartDashboard.putString("VISION ERROR", "TV & (TX, TY, TA, TS) DO NOT AGREE");
+                return false;
+                }
+            else {
+                SmartDashboard.putString("VISION ERROR", " ");
+                return true;
+            }
+        }
+        else {
+            // Target is NOT acquired
+            if (tx.getDouble(VISION_DEFAULT) == 0 &&
+                ty.getDouble(VISION_DEFAULT) == 0 &&
+                ts.getDouble(VISION_DEFAULT) == 0 &&
+                ta.getDouble(VISION_DEFAULT) == 0) {
+                    SmartDashboard.putString("VISION ERROR", " ");
+                    return false;
+                }
+            else {
+                SmartDashboard.putString("VISION ERROR", "TV & (TX, TY, TA, TS) DO NOT AGREE");
+                return true;
+            }
+        }
     }
 }
 
