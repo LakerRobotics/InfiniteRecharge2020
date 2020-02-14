@@ -58,7 +58,8 @@ private Ultrasonic topUltrasonic;
     public static int BOTTOM_STATE;
     public static int INTAKE_STATE;
     public static int TOP_STATE;
-    private final double INRANGE_MAX_RTL_DISTANCE = 2.7;
+    // RTL Value should probably be adjusted
+    private final double INRANGE_MAX_RTL_DISTANCE = 2.7; 
     private final double INRANGE_MAX_BOTTOM_DISTANCE = 5.0;
     private final double INRANGE_MAX_TOP_DISTANCE = 2.5;
     public static final int kInRange = 0;
@@ -207,6 +208,18 @@ addChild("TopUltrasonic",topUltrasonic);
         
         if (currentBottomSensorValue >= INRANGE_MAX_TOP_DISTANCE) return false;
         else return true;
+    }
+
+    public double getTX() {
+        
+        table = NetworkTableInstance.getDefault().getTable("limelight");
+        tx = table.getEntry("tx");
+        ty = table.getEntry("ty");
+        ta = table.getEntry("ta");
+        tv = table.getEntry("tv");
+
+        if (tv.getBoolean(false)) return (double) tx.getNumber(999999);
+        else return 999999;
     }
 }
 

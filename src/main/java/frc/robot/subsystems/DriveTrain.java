@@ -23,7 +23,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDBase.Tolerance;
 
+import java.lang.annotation.Target;
 import java.util.Map;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -255,5 +257,25 @@ rightSPX2 = new WPI_VictorSPX(14);
         _talon.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
         
     }
+
+    public void aimUsingChassis() {
+
+        final double visionPID = -0.1;
+        double error = Robot.robotSensors.getTX();
+        double adjustment = error * visionPID;
+        leftSRX.set(ControlMode.PercentOutput, adjustment);
+        rightSRX.set(ControlMode.PercentOutput, -adjustment);
+
+    }
+
+    public boolean isRobotAimed() {
+
+        double tx = Robot.robotSensors.getTX();
+
+        if (tx < 0.1 && tx > -0.1) return true;
+        else return false;
+        
+    }
+
 }
 
