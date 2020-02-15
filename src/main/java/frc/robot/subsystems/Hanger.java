@@ -199,6 +199,7 @@ addChild("hangerLimit",hangerLimit);
                 else finished = false;
             }
 
+            /*
             if (hangerSpark.getOutputCurrent() > 0) {
                 // MOTOR HAS BEEN TOLD TO MOVE
                 if (hangerSpark.getEncoder().getVelocity() == 0) {
@@ -211,6 +212,7 @@ addChild("hangerLimit",hangerLimit);
                     finished = false;
                 }
             }
+            */
         }
 
         return finished;

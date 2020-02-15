@@ -56,13 +56,15 @@ private Ultrasonic topUltrasonic;
     private NetworkTableEntry ta;       // Target Area 0% of image to 100% of image
     private NetworkTableEntry ts;       // Rotation or Skew of Target
     private NetworkTableEntry tv;       // Whether the limelight has any valid targets 0 or 1
+    private NetworkTableEntry ledMode;
     public static final double VISION_DEFAULT = 999999;
+    
 
     public static int BOTTOM_STATE;
     public static int INTAKE_STATE;
     public static int TOP_STATE;
     // RTL Value should probably be adjusted
-    private final double INRANGE_MAX_RTL_DISTANCE = 2.7; 
+    private final double INRANGE_MAX_RTL_DISTANCE = 5.5; 
     private final double INRANGE_MAX_BOTTOM_DISTANCE = 5.0;
     private final double INRANGE_MAX_TOP_DISTANCE = 2.5;
     public static final int kInRange = 0;
@@ -103,6 +105,7 @@ addChild("TopUltrasonic",topUltrasonic);
     ta = table.getEntry("ta");
     tv = table.getEntry("tv");
     ts = table.getEntry("ts");
+    ledMode = table.getEntry("ledMode");
 
     readyToLoadUltrasonic.setEnabled(true);
     readyToLoadUltrasonic.setAutomaticMode(true);
@@ -221,6 +224,18 @@ addChild("TopUltrasonic",topUltrasonic);
 
     public double getTY() {
         return ty.getDouble(VISION_DEFAULT);
+    }
+
+    public int getLedMode() {
+        return (int) ledMode.getNumber(0);
+    }
+
+    public void setLedMode(int mode) {
+        ledMode.setNumber(mode);
+    }
+
+    public double getGyroAngle() {
+        return frcGyroAccel.getAngle();
     }
 
     public boolean getTV() {
