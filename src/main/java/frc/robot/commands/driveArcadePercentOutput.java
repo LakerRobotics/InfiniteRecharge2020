@@ -47,7 +47,7 @@ public class driveArcadePercentOutput extends Command {
     @Override
     protected void execute() {
         speed = Robot.oi.driver.getRawAxis(Robot.oi.XBOX360_LEFT_Y);
-        rotation = Robot.oi.driver.getRawAxis(Robot.oi.XBOX360_RIGHT_X);
+        rotation = 0.75 * Robot.oi.driver.getRawAxis(Robot.oi.XBOX360_RIGHT_X);
 
         SmartDashboard.putNumber("LEFT JOYSTICK", speed);
         SmartDashboard.putNumber("RIGHT JOYSTICK", rotation);
