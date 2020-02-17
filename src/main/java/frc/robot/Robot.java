@@ -93,6 +93,7 @@ controlPanel = new ControlPanel();
      */
     @Override
     public void disabledInit(){
+        Robot.robotSensors.setLedMode(1);       // Turn the Vision LED off while disabled
 
     }
 
@@ -103,6 +104,7 @@ controlPanel = new ControlPanel();
 
     @Override
     public void autonomousInit() {
+        Robot.robotSensors.setLedMode(3);                   // Turn Vision LED on while enabled
         autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -123,6 +125,7 @@ controlPanel = new ControlPanel();
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        Robot.robotSensors.setLedMode(3);                   // Turn Vision LED on while enabled
     }
 
     /**
