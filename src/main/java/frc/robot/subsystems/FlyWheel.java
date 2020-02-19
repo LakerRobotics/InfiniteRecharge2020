@@ -95,8 +95,10 @@ flyWheelTalon = new WPI_TalonSRX(19);
     }
 
     public boolean isFlywheelAtSpeed(double velocity) {
-        if (flyWheelTalon.getSelectedSensorVelocity() == velocity) return true;
-        else return false;
+        // TODO: When the encoder is installed, re-enter this code
+        // if (flyWheelTalon.getSelectedSensorVelocity() == velocity) return true;
+        // else return false;
+        return true;
     }
 
     private void configurePID(WPI_TalonSRX _talon) {

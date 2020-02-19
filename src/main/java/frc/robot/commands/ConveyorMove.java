@@ -43,7 +43,8 @@ public class ConveyorMove extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.conveyor.move(Robot.oi.getConveyorInput());
+        if (Robot.flyWheel.isFlywheelAtSpeed(Robot.oi.getFlywheelInput()))
+            Robot.conveyor.move(Robot.oi.getConveyorInput());
     }
 
     // Make this return true when this Command no longer needs to run execute()
