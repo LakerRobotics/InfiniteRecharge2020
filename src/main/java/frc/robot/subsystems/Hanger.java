@@ -93,7 +93,7 @@ hangerSpark = new CANSparkMax(30, MotorType.kBrushless);
 
 hangerSpark.restoreFactoryDefaults();  
 hangerSpark.setInverted(false);
-hangerSpark.setIdleMode(IdleMode.kCoast);
+hangerSpark.setIdleMode(IdleMode.kBrake);
   
         
 hangerLimit = new DigitalInput(6);

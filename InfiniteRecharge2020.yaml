@@ -382,7 +382,7 @@ Children:
           default: kCoast
           name: Idle Mode
           validators: null
-          value: kCoast
+          value: kBrake
         Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
           name: Inverted, validators: null, value: false}
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
