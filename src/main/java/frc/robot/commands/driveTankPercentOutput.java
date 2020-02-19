@@ -12,6 +12,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.OI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard; // MEW 1/19/2020
 
@@ -47,8 +48,8 @@ public class driveTankPercentOutput extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        leftSpeed = Robot.oi.driver.getRawAxis(Robot.oi.XBOX360_LEFT_Y);
-        rightSpeed = Robot.oi.driver.getRawAxis(Robot.oi.XBOX360_RIGHT_Y);
+        leftSpeed = Robot.oi.driver.getRawAxis(OI.XBOX360_LEFT_Y);
+        rightSpeed = Robot.oi.driver.getRawAxis(OI.XBOX360_RIGHT_Y);
 
         SmartDashboard.putNumber("LEFT JOYSTICK", leftSpeed);
         SmartDashboard.putNumber("RIGHT JOYSTICK", rightSpeed);

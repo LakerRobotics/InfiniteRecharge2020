@@ -12,6 +12,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.OI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard; // MEW 1/19/2020
 
@@ -48,8 +49,8 @@ public class driveCurvaturePercentOutput extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        speed = Robot.oi.driver.getRawAxis(Robot.oi.XBOX360_LEFT_Y);
-        rotation = Robot.oi.driver.getRawAxis(Robot.oi.XBOX360_RIGHT_X);
+        speed = Robot.oi.driver.getRawAxis(OI.XBOX360_LEFT_Y);
+        rotation = Robot.oi.driver.getRawAxis(OI.XBOX360_RIGHT_X);
 
         SmartDashboard.putNumber("LEFT JOYSTICK", speed);
         SmartDashboard.putNumber("RIGHT JOYSTICK", rotation);
