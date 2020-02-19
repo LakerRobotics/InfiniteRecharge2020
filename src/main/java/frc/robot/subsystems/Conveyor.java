@@ -83,25 +83,6 @@ conveyorVictor = new WPI_VictorSPX(17);
     public void move(final double speed) {
         conveyorVictor.set(ControlMode.PercentOutput, speed);
     }
-
-    public boolean isPowerCellInBottomPosition() {
-        if (RobotSensors.INTAKE_STATE == RobotSensors.kInRange) return true;
-        else return false;
-    }
-
-    public boolean isPowerCellInTopPosition() {
-        if (RobotSensors.TOP_STATE == RobotSensors.kInRange) return true;
-        else return false;
-    }
-
-    public boolean isPowerCellInReadyPosition() {
-        if (RobotSensors.BOTTOM_STATE == RobotSensors.kInRange) return true;
-        else return false;
-    }
-
-    //public boolean isOKToShoot() {
-    //    if ((isPowerCellInTopPosition() && isPowerCellInReadyPosition() && isPowerCellInBottomPosition())) 
-    //}
     
 }
 
