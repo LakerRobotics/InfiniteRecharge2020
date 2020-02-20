@@ -192,14 +192,21 @@ rightSPX2 = new WPI_VictorSPX(14);
     }
 
     public void driveVelocity(double velocity, double inches) {
+        /*
         double leftDistance = getDistanceTravelled(leftSRX);
         double rightDistance = getDistanceTravelled(rightSRX);
         double averageDistance = (leftDistance + rightDistance) / 2;
         double error = inches - averageDistance;
 
         double adjustment = error / inches;
-        double newVelocity = velocity * error;
+        double newVelocity = velocity * adjustment;
 
+        SmartDashboard.putNumber("leftDistance", leftDistance);
+        SmartDashboard.putNumber("rightDistance", rightDistance);
+        SmartDashboard.putNumber("newVelocity", newVelocity);
+        */
+        double newVelocity = velocity;
+        SmartDashboard.putNumber("newVelocity", newVelocity);
         leftSRX.set(ControlMode.Velocity, newVelocity);
         rightSRX.set(ControlMode.Velocity, -newVelocity);
     }
