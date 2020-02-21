@@ -103,6 +103,7 @@ public Joystick operator;
     private NetworkTableEntry bottomLimitSensor;
     private NetworkTableEntry readyToLoadSensor;
     private NetworkTableEntry topLimitSensor;
+    private NetworkTableEntry flywheelVelocityInput;
 
     // ***** HANGER *****
     private ShuffleboardTab hangerTab;
@@ -310,6 +311,13 @@ aim.whenPressed(new AimUsingChassis());
     powerCell.add(new FlyWheelMove())
         .withPosition(5, 1);
 
+    flywheelVelocityInput = powerCell.addPersistent("Flywheel Velocity", 0)
+        .withWidget(BuiltInWidgets.kTextView)
+        .withPosition(6, 0)
+        .getEntry();
+    powerCell.add(new FlyWheelWithVelocity(500))
+        .withPosition(6, 1);
+
     // ***** HANGER *****
     hangerTab = Shuffleboard.getTab("Hang");
 
@@ -425,6 +433,10 @@ public Joystick getoperator() {
 
     public double getFlywheelInput() {
         return flywheelInput.getDouble(0);
+    }
+
+    public double getFlywheelVelocityInput() {
+        return flywheelVelocityInput.getDouble(0);
     }
 
     public double getHangerInput() {

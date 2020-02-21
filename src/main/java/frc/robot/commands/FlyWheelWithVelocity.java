@@ -46,13 +46,15 @@ public class FlyWheelWithVelocity extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.flyWheel.velocityMove(m_velocity);
+        // Robot.flyWheel.velocityMove(m_velocity);
+        Robot.flyWheel.velocityMove(Robot.oi.getFlywheelVelocityInput());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        if (Robot.flyWheel.isFlywheelAtSpeed(m_velocity)) return true;
+        // if (Robot.flyWheel.isFlywheelAtSpeed(m_velocity)) return true;
+        if (Robot.flyWheel.isFlywheelAtSpeed(Robot.oi.getFlywheelVelocityInput())) return true;
         else return false;
     }
 
