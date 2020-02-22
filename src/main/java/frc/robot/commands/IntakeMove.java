@@ -47,6 +47,7 @@ public class IntakeMove extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        /* We can carry two balls in the intake -- disable smart intake
         if (m_overRideState)
             Robot.intake.move(Robot.oi.getIntakeInput());
         else
@@ -55,16 +56,22 @@ public class IntakeMove extends Command {
                 Robot.intake.move(Robot.oi.getIntakeInput());
             }
         }
+        */
+        Robot.intake.move(Robot.oi.getIntakeInput());
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
+        /* We can carry two balls in the intake -- disable smart intake
         if (m_overRideState) return false;
         else {
             if (Robot.robotSensors.isIntakeInRange()) return true;
             else return false;
         }
+        */
+        return false;
     }
 
     // Called once after isFinished returns true
