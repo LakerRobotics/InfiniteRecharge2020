@@ -53,7 +53,7 @@ public class DriveTrain extends Subsystem {
     // private final double MINIMUM_VISION_TURN_SPEED = 0.3;       // Concrete Values
     // private final double MAXIMUM_VISION_TURN_SPEED = 0.4;       // Concrete Values
     private final double VISION_TOLERANCE = 1;
-    private final double INCHES_PER_ROTATION = 5.75 * Math.PI * 0.77;
+    private final double INCHES_PER_ROTATION = 5.75 * Math.PI;
     private final double ENCODER_INCHES_TOLERANCE = 6;
     private final double ALLOWABLE_CLOSED_LOOP_ERROR = 50;
     
