@@ -46,6 +46,6 @@ public class autonomousShootAndMove extends CommandGroup {
         addSequential(new prepareToShoot());              // Start Flywheel & Indexer
         addSequential(new conveyorMoveTimed(3));          // Start Conveyor
         addSequential(new shootStop());
-        addSequential(new driveDistanceUsingEncoder(-60, 30));   // Move Off the Start Line
+        addSequential(new driveDistanceUsingEncoder(-60, 0.5));   // Move Off the Start Line
     } 
 }

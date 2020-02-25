@@ -177,7 +177,7 @@ aim.whenPressed(new AimUsingChassis());
     SmartDashboard.putData("FlyWheelWithVelocity", new FlyWheelWithVelocity(500));                  // Argument: Velocity
     SmartDashboard.putData("IntakeMove", new IntakeMove(true));                                     // Argument: Override Conditions
     SmartDashboard.putData("driveUsingGyro", new driveUsingGyro(36));                               // Argument: Inches
-    SmartDashboard.putData("driveDistanceUsingEncoder", new driveDistanceUsingEncoder(-36, 0.3));    // Arguments: Inches, Speed
+    SmartDashboard.putData("driveDistanceUsingEncoder", new driveDistanceUsingEncoder(-36, 0.5));    // Arguments: Inches, Speed
     
     // ***** 5053 *****
     // Shuffleboard Tabs
