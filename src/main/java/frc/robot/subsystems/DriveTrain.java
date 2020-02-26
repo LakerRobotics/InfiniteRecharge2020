@@ -292,22 +292,21 @@ rightSPX2 = new WPI_VictorSPX(14);
         _talon.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
 
         /* Config sensor used for Primary PID [Velocity] */
-        // _talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,
-        //                                     kPIDLoopIdx, 
-        //                                     kTimeoutMs);
+        _talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,
+                                             kPIDLoopIdx, 
+                                             kTimeoutMs);
         
         /* Config the peak and nominal outputs */
-        // _talon.configNominalOutputForward(0, kTimeoutMs);
-        // _talon.configNominalOutputReverse(0, kTimeoutMs);
-        // _talon.configPeakOutputForward(1, kTimeoutMs);
-        // _talon.configPeakOutputReverse(-1, kTimeoutMs);
+        _talon.configNominalOutputForward(0, kTimeoutMs);
+        _talon.configNominalOutputReverse(0, kTimeoutMs);
+        _talon.configPeakOutputForward(1, kTimeoutMs);
+        _talon.configPeakOutputReverse(-1, kTimeoutMs);
         
         /* Config the Velocity closed loop gains in slot0 */
-        // _talon.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
-        // _talon.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
-        // _talon.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
-        // _talon.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
-
+        _talon.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
+        _talon.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
+        _talon.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
+        _talon.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
         
     }
 
