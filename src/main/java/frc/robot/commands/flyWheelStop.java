@@ -44,6 +44,7 @@ public class flyWheelStop extends Command {
     @Override
     protected void execute() {
         Robot.flyWheel.stop();
+        Robot.robotSensors.setLedMode(1);     // Turn limelight LEDs off
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -46,5 +46,6 @@ public class prepareToShoot extends CommandGroup {
         
         addParallel(new FlyWheelWithVelocity(0.5));
         addSequential(new indexerTimed(3));
+        
     } 
 }
