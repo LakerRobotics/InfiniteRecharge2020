@@ -202,7 +202,7 @@ rightSPX2 = new WPI_VictorSPX(14);
     }
 
     public void arcadePercentOutput(double power, double rotation) {
-        diffDrive.arcadeDrive(power, rotation, false);
+        diffDrive.arcadeDrive(power, rotation, true);
     }
 
     public void driveVelocity(double velocity, double inches) {
