@@ -233,30 +233,30 @@ addChild("bottomLimit",bottomLimit);
     }
 }
 
-// Hayden's notes/attempts for code.
+// Hayden's code notes.
 
 
-// Me just trying to figure out certain method types
+// --------------------------------------------------------------------------------
 
 // Void does not return any values, only completes an action or definition.
-// Double can return a value and can hold double the information that a normal method can. 
-// Int returns a single value (I think).
-// Boolean returns a boolean value (true or false, 1 or 0).\
+// Double can return a value and can hold double the information that a normal method can. (i.e Two Values)
+// Int returns a single value.
+// Boolean returns a boolean value (true or false, 1 or 0).
 
 
-// Me just trying to figure out how methods, commands, and subsystems match up and work out. (Not 100% sure about this one.)
+// --------------------------------------------------------------------------------
 
 // Subsystems control the commands, acting as housing for the commands and the definitions..
 // Methods feed off of the commands and exicute the actions of the commands; they give the commands character and abilities.
 // Commands complete an action and allow the subsystem to do something, using the code inside of them.
 
 
-// Me just trying to figure out the use of public and private.
+// --------------------------------------------------------------------------------
 
 // Private only allows you to use that method/object in the certain subsystem/command.
 // Public allows you to use a method/object in all subsystems/commands.
 
-// Me just trying to figure out how to code such objects.
+// --------------------------------------------------------------------------------
 
 // A Public Void Method: public void <methodName>(<Optional Perameters>) {
 // <Method's code in here>
@@ -269,3 +269,24 @@ addChild("bottomLimit",bottomLimit);
 // A Private Int Method: private int <methodName> (<Optional Perameters>) {
 // <Method's code in here>
 // }
+
+//----------------------------------------------------------------------------------
+
+// if's, elses and elseif's
+
+// if's are conditional checking if a certain condition is true.
+
+// if(<variable>) <condition (i.e. ==, =< >)> <number or variable> *optional && which adds another if* {
+// <run code>
+// }
+
+// elses are the opposite of if's. If the if statement is false, it runs the else form of the statement. (such as if the orange is not an apple, (ELSE) write How is an orange an apple?)
+
+// <if statement> {
+// <if statement code>
+// }
+// else {
+// <else statement code>
+// }
+
+// elseif's are optional if's if the first if statement is false.
